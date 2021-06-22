@@ -1,0 +1,15 @@
+{
+    "name": "epic mode",
+    "version": "0.01",
+    "browser_action": {
+        "default_title": "epic mode",
+        "default_popup": "popup.html"
+    },
+    
+    "background": {
+        "page": "bg.html",
+        "persistent": true
+    },
+    "manifest_version": 2
+
+}
