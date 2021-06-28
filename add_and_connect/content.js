@@ -3,23 +3,21 @@ chrome.runtime.onMessage.addListener(function (request) {
 
     console.log(request)
     
-    let aimedPosition = `PMG-Koddi - 922-PMG-Koddi(QA-AU-Selenium)`
-
     if (request == 'add') {
 
-        // add to zoho
-        document.querySelector('[class="pure-css-dropdown madblock-lm-background"]').children[0].children[0].children[0].click()
+        // click add to zoho button
+        document.querySelector('div.display-flex.justify-space-between.pt2 > div > div:nth-child(1) > lnsection > span > nav > ul > li > a').click()
 
-        // move to top left
+        // move popup window to top left
         setTimeout(() => {
             document.querySelector('[class="madblock-app-container"]').style.inset = "0 0 0 0"
-        }, 10000);
+        }, 15000);
 
         // check if contains email && TERMINATE if negative
         setTimeout(() => {
-            try {if (document.querySelector('[class="input_field 0 applied_suggestion_off"]').value == "" ) {document.body.remove()}} catch (error) {1+1}
+            try {if (document.querySelector('[class="input_field 0 applied_suggestion_off"]').value == "" ) {document.querySelector("div.scaffold-layout.scaffold-layout--breakpoint-none.scaffold-layout--main-aside.scaffold-layout--static").remove()}} catch (error) {1+1}
             
-        }, 12000);
+        }, 17000);
 
     }
 });

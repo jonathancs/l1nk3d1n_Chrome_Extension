@@ -1,5 +1,5 @@
 {
-    "name": "Scroll",
+    "name": "Connect",
     "version": "1.0",
     "manifest_version": 2,
     "content_scripts": [
@@ -10,6 +10,6 @@
     ],
     "browser_action": {
         "default_popup": "popup.html",
-        "default_title": "Scroll"
+        "default_title": "Connect"
     }
 }
