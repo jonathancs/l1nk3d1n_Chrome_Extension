@@ -13,7 +13,14 @@ chrome.runtime.onMessage.addListener(function (request) {
         try {
             setTimeout(() => {
                 document.querySelector('[class="msg-overlay-bubble-header__control artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--1 artdeco-button--tertiary ember-view"]').click()
-            }, 1000);
+            }, 500);
+        } catch (error) {1+1}
+
+
+        try {
+            setTimeout(() => {
+                document.querySelector('[class="msg-overlay-bubble-header__control artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--1 artdeco-button--tertiary ember-view"]').click()
+            }, 800);
         } catch (error) {1+1}
 
         try {
@@ -32,7 +39,7 @@ chrome.runtime.onMessage.addListener(function (request) {
         // extend chat message
         try {
             setTimeout(() => {
-                document.querySelector('[class="msg-overlay-bubble-header msg-overlay-conversation-bubble--header flex-shrink-zero pl2"]').parentElement.style.height = "1000px"
+                document.querySelector('[class="msg-overlay-conversation-bubble-header justify-space-between"]').parentElement.style.height = "1200px"
             }, 5000);
         } catch (error) {1+1}
 
