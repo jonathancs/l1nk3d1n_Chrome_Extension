@@ -19,7 +19,7 @@ chrome.runtime.onMessage.addListener(function (request) {
 
         setTimeout(() => {
 
-            textOnMessageBox.innerText = `Ooi ${candidateFirstName}, fica pra uma próxima?`
+            textOnMessageBox.innerText = `${candidateFirstName}❓`
             
         }, 700);
 

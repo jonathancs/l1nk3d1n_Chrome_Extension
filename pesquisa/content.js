@@ -38,9 +38,13 @@ chrome.runtime.onMessage.addListener(function (request) {
         
         setTimeout(() => {
             
+            let perfisNoSistema = document.querySelectorAll('span[class="grownfacekolyaax-pv-status-icon font-icon grownfacekolyaax-lm-non-parsable grownfacekolyaax-exists"]')
+            
+            perfisNoSistema.forEach(element => element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.remove())
+            
             linksArray = document.querySelectorAll('[class="display-flex align-items-center"]')
 
-            for (let i = 0; i < linksArray.length; i++) {
+            for (let i = 1; i < linksArray.length; i++) {
                 const currentLink = linksArray[i]
 
                 let textURL = currentLink.children[0].href
@@ -50,9 +54,9 @@ chrome.runtime.onMessage.addListener(function (request) {
                 htmlInject.append(cleanedTextURL + `\n`)
                 
             }
-            
-            
-            
+
+
+
         }, 1000);
 
 

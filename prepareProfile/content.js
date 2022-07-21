@@ -37,7 +37,7 @@ chrome.runtime.onMessage.addListener(function (request) {
 				try { sectionsList = document.querySelectorAll('section.artdeco-card.ember-view.break-words') } catch (error) { 1 + 1 }
 
 				//in highlight
-				regexDestaques = /<!---->destaque<!---->/gmi
+				regexDestaques = /<!---->em destaque<!---->/gmi
 
 				//activities
 				regexAtividades = /<!---->Atividades<!---->/gmi
@@ -63,6 +63,18 @@ chrome.runtime.onMessage.addListener(function (request) {
 				//publicações
 				regexPublicações = /<!---->Publicações<!---->/gmi
 
+				//trabalho voluntario
+				regexVoluntario = /<!---->Trabalho voluntário<!---->/gmi
+
+				//licenças e certificados
+				regexCertificados = /<!---->Licenças e Certificados<!---->/gmi
+
+				//formação acadêmica
+				regexFormacaoAcademica = /<!---->Formação Acadêmica<!---->/gmi
+				
+				//formação acadêmica
+				regexCompetencias = /<!---->Competências<!---->/gmi
+
 				// remove bottom messages popups
 				let messagesRibbon = document.getElementById('msg-overlay')
 				messagesRibbon.remove()
@@ -79,9 +91,13 @@ chrome.runtime.onMessage.addListener(function (request) {
 					if (loopedElement.outerHTML.match(regexProjetos)) { loopedElement.remove() }
 					if (loopedElement.outerHTML.match(regexReconhecimentos)) { loopedElement.remove() }
 					if (loopedElement.outerHTML.match(regexPublicações)) { loopedElement.remove() }
+					if (loopedElement.outerHTML.match(regexVoluntario)) { loopedElement.remove() }
+					if (loopedElement.outerHTML.match(regexCertificados)) { loopedElement.remove() }
+					if (loopedElement.outerHTML.match(regexFormacaoAcademica)) { loopedElement.remove() }
+					if (loopedElement.outerHTML.match(regexCompetencias)) { loopedElement.remove() }
 
 				}
-			}, 3000)
+			}, 1500)
 
 
 			// expand all fields
@@ -95,7 +111,7 @@ chrome.runtime.onMessage.addListener(function (request) {
 
 				document.querySelectorAll('.inline-show-more-text__button').forEach(element => element.click())
 
-			}, 3300);
+			}, 2000);
 
 
 		}
@@ -144,11 +160,11 @@ chrome.runtime.onMessage.addListener(function (request) {
 
 		function checkIfMoreThan5EXPs() {
 
-			verifyMoreEXPs_Regex = /todas as \d* experiências[\s\S]/gmi
+			verifyMoreEXPs_Regex = /<span class="pvs-navigation__text">[\s]{1,10}Exibir todas as \d* experiências[\s]{1,10}<\/span>/gmi
 
 			hasExpSubPage = getMatches(wholeHTML, verifyMoreEXPs_Regex)
 
-			if (hasExpSubPage.length > 0) { return true } else { return false }
+			if (hasExpSubPage) { return true } else { return false }
 
 		}
 
@@ -295,7 +311,14 @@ chrome.runtime.onMessage.addListener(function (request) {
 		
 		prepareInformation_on_TextArea()
 		
-		accessEXP_SUBpage()
+		
+		
+		setTimeout(() => {
+			
+			if (checkIfMoreThan5EXPs) {accessEXP_SUBpage()} 
+
+		}, 3200);
+		
 		
 		setTimeout(() => {
 			checkWhitePrompt()
