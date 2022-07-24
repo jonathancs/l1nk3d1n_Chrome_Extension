@@ -27,7 +27,7 @@ chrome.runtime.onMessage.addListener(function (request) {
 
 				// remove side scaffold of ads and similar profiles
 				try {
-					let mainPageSelector = document.getElementById('main')
+					mainPageSelector = document.getElementById('main')
 					mainPageSelector.nextElementSibling.remove()
 				} catch (error) { 1 + 1 }
 
@@ -37,7 +37,7 @@ chrome.runtime.onMessage.addListener(function (request) {
 				try { sectionsList = document.querySelectorAll('section.artdeco-card.ember-view.break-words') } catch (error) { 1 + 1 }
 
 				//in highlight
-				regexDestaques = /<!---->em destaque<!---->/gmi
+				regexDestaques = /<!---->destaques<!---->/gmi
 
 				//activities
 				regexAtividades = /<!---->Atividades<!---->/gmi
@@ -125,7 +125,7 @@ chrome.runtime.onMessage.addListener(function (request) {
 
 				setInterval(() => {
 					
-					arrayOfColors = ['white', 'yellow', 'gold', 'purple', 'orange', 'green', 'cyan', 'pink']
+					arrayOfColors = ['yellow', 'red', 'green', 'pink']
 					
 					randomColor = arrayOfColors[Math.floor(Math.random() * arrayOfColors.length)]
 			
@@ -295,6 +295,7 @@ chrome.runtime.onMessage.addListener(function (request) {
 
 		englishLevel = checkIfAdvancedEnglish()
 		/**/ waitHalfSecond();
+		try {document.querySelector('div[id="languages"]').parentElement.remove()} catch (error) {1+1}
 
 		moreThanFiveEXPS = checkIfMoreThan5EXPs() // if morethanfive is =! 
 		/**/ waitHalfSecond();
