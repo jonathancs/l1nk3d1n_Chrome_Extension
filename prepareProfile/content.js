@@ -2,7 +2,7 @@ chrome.runtime.onMessage.addListener(function (request) {
 
 	console.log(request)
 
-	if (request == "prepareProfile") {
+	if (request == "prepareProfileForSaving") {
 		let hasExpSubPage = ''
 		let expSubPageURL = ''
 		let wholeHTML = document.getElementById('main').outerHTML
