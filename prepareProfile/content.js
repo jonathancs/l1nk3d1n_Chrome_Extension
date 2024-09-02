@@ -123,12 +123,10 @@ chrome.runtime.onMessage.addListener(function (request) {
     
                 let experienceSectionElement = document.querySelectorAll('section.artdeco-card.pv-profile-card.break-words.mt2')[4]
                 let experienceSectionHTML = experienceSectionElement.outerHTML
-                console.log(experienceSectionHTML)
     
                 // confirm if experienceSection was correctly matched.
                 let experienceSectionRegex = /<span aria-hidden="true"><!---->(Experience)<!---->/im
                 let confirmedExperienceSection = experienceSectionHTML.match(experienceSectionRegex)
-                console.log(confirmedExperienceSection)
     
                 if (confirmedExperienceSection) {
                     
