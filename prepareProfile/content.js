@@ -147,31 +147,36 @@ chrome.runtime.onMessage.addListener(function (request) {
         function checkIfAdvancedEnglish() {
 
             let firstRegexTest = ''
-            let secondRegexTest = ''
-            let thirdRegexTest = ''
+            let nativeOrBilingualResult = ''
+            let professionalProficiencyResult = ''
+            let fullProfessionalProficiencyResult = ''
+			let foundResult = ''
     
             // Para "níveis" de inglês:
             let regex1 = /<!---->(?:inglês|english|ingles|inglés).*<!---->[\s\S]{1,300}Nível (.*?)</im
     
             // Para inglês fluente ou nativo:
             let regexNativeOrBilingual = /<!---->(?:inglês|english|ingles|inglés)<!---->[\s\S]*?="true"><!---->(Native or bilingual proficiency)<!---->/im
+            let regexFullProfessionalProficiency = /<!---->(?:inglês|english|ingles|inglés)<!---->[\s\S]*?="true"><!---->(Full Professional proficiency)<!---->/im
             let regexProfessionalProficiency = /<!---->(?:inglês|english|ingles|inglés)<!---->[\s\S]*?="true"><!---->(Professional working proficiency)<!---->/im
 
             try {
                 firstRegexTest = wholeHTML.match(regex1)
-                secondRegexTest = wholeHTML.match(regexNativeOrBilingual)
-                thirdRegexTest = wholeHTML.match(regexProfessionalProficiency)
+                nativeOrBilingualResult = wholeHTML.match(regexNativeOrBilingual)
+                professionalProficiencyResult = wholeHTML.match(regexProfessionalProficiency)
+                fullProfessionalProficiencyResult = wholeHTML.match(regexFullProfessionalProficiency)
             } catch (error) {
                 firstRegexTest = ''
-                secondRegexTest = ''
+                nativeOrBilingualResult = ''
             }
-            
-            englishCounter = 0
-            try { if (firstRegexTest[1].match(/avançado/im)) { englishCounter++ } } catch (error) { 1+1 }
-            try { if (secondRegexTest[1].match(/fluente/im)) { englishCounter++ } } catch (error) { 1+1 }
 
-            return secondRegexTest[1] ? secondRegexTest[1] : thirdRegexTest[1]
-    
+			if (firstRegexTest) { try {foundResult = firstRegexTest[1]} catch (error) { 1+1 }}
+			if (nativeOrBilingualResult) { try {foundResult = nativeOrBilingualResult[1]} catch (error) { 1+1 }}
+			if (professionalProficiencyResult) { try {foundResult = professionalProficiencyResult[1]} catch (error) { 1+1 }}
+			if (fullProfessionalProficiencyResult) { try {foundResult = fullProfessionalProficiencyResult[1]} catch (error) { 1+1 }}
+			if (foundResult == '') {foundResult = 'no english'}
+            
+            return foundResult
         }
     
         function checkIfMoreThan5EXPs() {
@@ -204,7 +209,7 @@ chrome.runtime.onMessage.addListener(function (request) {
     
         function getProfileName() {
     
-            let nameRegex = /"Send ([\s\S]*?)’s profile via message/gmi;
+            let nameRegex = /"Send ([\s\S]*?)’s? profile via message/gmi;
             let nameResult
             try { nameResult = getMatches(wholeHTML, nameRegex) } catch (error) { nameResult='' }
             return nameResult[0];
